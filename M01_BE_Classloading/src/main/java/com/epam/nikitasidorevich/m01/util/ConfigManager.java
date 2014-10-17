@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
  * Design pattern Singleton used.
  */
 public class ConfigManager {
+    public static final String PATH_TO_JAR = "path-to-jar";
     private static final String BUNDLE_NAME = "com.epam.nikitasidorevich.m01.config";
 
     private static ConfigManager instance;

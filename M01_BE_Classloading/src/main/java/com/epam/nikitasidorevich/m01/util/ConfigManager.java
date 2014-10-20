@@ -14,6 +14,9 @@ public class ConfigManager {
     private static ConfigManager instance;
     private ResourceBundle resourceBundle;
 
+    private ConfigManager() {
+    }
+
     public static synchronized ConfigManager getInstance() {
         if (instance == null) {
             instance = new ConfigManager();

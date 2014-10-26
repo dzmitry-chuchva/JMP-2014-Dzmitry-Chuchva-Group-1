@@ -31,12 +31,12 @@ public class Main {
                 Class<?> loadedClass = classLoader.loadClass(configManager.getProperty(args[optionIndexes.get(i)]));
                 if (Option.class.isAssignableFrom(loadedClass) && !loadedClass.isInterface()) {
                     option = (Option) loadedClass.newInstance();
+                    String optionArgumnents[] = Arrays.copyOfRange(args, optionIndexes.get(i) + 1, optionIndexes.get(i+1));
+                    option.run(optionArgumnents);
                 }
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
-            String optionArgumnents[] = Arrays.copyOfRange(args, optionIndexes.get(i) + 1, optionIndexes.get(i+1));
-            option.run(optionArgumnents);
         }
     }
 

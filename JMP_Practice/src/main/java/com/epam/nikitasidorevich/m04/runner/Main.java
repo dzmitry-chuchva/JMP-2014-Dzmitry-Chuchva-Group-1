@@ -25,6 +25,7 @@ public class Main {
 
     private static List<Thread> loadOptions(String[] args, List<Integer> optionIndexes) {
         List<Thread> threads = new ArrayList<Thread>();
+        ThreadGroup threadGroup = new ThreadGroup("OptionThreads");
         try {
             Properties properties = PropertiesManager.loadProperties("m04_config.properties");
             ClassLoader classLoader = new JarClassLoader(properties.getProperty("path-to-jar"));
@@ -36,7 +37,7 @@ public class Main {
                     Constructor constructor = loadedClass.getConstructor(String[].class);
                     Object arg = optionArgumnents;
                     runnable = (Runnable) constructor.newInstance(arg);
-                    threads.add(new Thread(runnable));
+                    threads.add(new Thread(threadGroup, runnable));
                 }
             }
         } catch (IOException | ClassNotFoundException | InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {

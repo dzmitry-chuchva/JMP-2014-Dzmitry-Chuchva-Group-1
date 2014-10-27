@@ -4,9 +4,7 @@ import com.epam.nikitasidorevich.m01.classloader.JarClassLoader;
 import com.epam.nikitasidorevich.m04.executor.ThreadExecutor;
 import com.epam.nikitasidorevich.m04.util.PropertiesManager;
 
-import java.io.IOException;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class Main {
@@ -40,7 +38,7 @@ public class Main {
                     threads.add(new Thread(threadGroup, runnable));
                 }
             }
-        } catch (IOException | ClassNotFoundException | InstantiationException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return threads;
@@ -60,8 +58,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String userChoice = scanner.nextLine();
 
-//        boolean executedSuccessfully = false;
-
         switch (userChoice) {
             case "1" :
                 ThreadExecutor.executeOneByOne(threads);
@@ -73,12 +69,5 @@ public class Main {
                 System.out.println("Wrong input.");
                 System.exit(0);
         }
-//
-//        System.out.println("Starting execution...");
-//        if(executedSuccessfully) {
-//            System.out.println("Execution finished successfully!");
-//        } else {
-//            System.out.println("Execution failed: thread execution was interrupted!");
-//        }
     }
 }

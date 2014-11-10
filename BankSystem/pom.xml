@@ -6,7 +6,6 @@
 
     <groupId>com.epam.nikitasidorevich</groupId>
     <artifactId>banksystem</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
@@ -16,7 +15,39 @@
         <module>bs-dao</module>
     </modules>
 
-    <dependencyManagement>
+    <packaging>pom</packaging>
 
+    <properties>
+        <bs-web.version>1.0-SNAPSHOT</bs-web.version>
+        <bs-service.version>1.0-SNAPSHOT</bs-service.version>
+        <bs-domain.version>1.0-SNAPSHOT</bs-domain.version>
+        <bs-dao.version>1.0-SNAPSHOT</bs-dao.version>
+
+        <spring.version>4.1.1.RELEASE</spring.version>
+        <postgresql.version>9.3-1102-jdbc4</postgresql.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring JDBC -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- PostgreSQL driver -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 </project>

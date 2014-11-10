@@ -11,5 +11,25 @@
 
     <artifactId>bs-web</artifactId>
 
+    <packaging>war</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.epam.nikitasidorevich</groupId>
+            <artifactId>bs-domain</artifactId>
+            <version>${bs-domain.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.nikitasidorevich</groupId>
+            <artifactId>bs-service</artifactId>
+            <version>${bs-dao.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

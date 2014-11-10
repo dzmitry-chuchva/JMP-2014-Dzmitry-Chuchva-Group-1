@@ -11,5 +11,20 @@
 
     <artifactId>bs-service</artifactId>
 
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.epam.nikitasidorevich</groupId>
+            <artifactId>bs-domain</artifactId>
+            <version>${bs-domain.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.nikitasidorevich</groupId>
+            <artifactId>bs-dao</artifactId>
+            <version>${bs-dao.version}</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

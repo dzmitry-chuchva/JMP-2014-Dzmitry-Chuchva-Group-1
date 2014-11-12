@@ -15,6 +15,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.epam.nikitasidorevich</groupId>
             <artifactId>bs-domain</artifactId>
             <version>${bs-domain.version}</version>

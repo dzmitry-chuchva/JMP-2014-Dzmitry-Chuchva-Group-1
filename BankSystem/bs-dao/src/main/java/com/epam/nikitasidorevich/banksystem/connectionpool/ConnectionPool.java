@@ -26,7 +26,7 @@ public final class ConnectionPool {
      * @version     1.0 29 Jan 2013
      * @author      Nikita Sidorevich
      */
-    public class ConnectionWrapper {
+    public class ConnectionWrapper implements AutoCloseable {
         private Connection con;
 
         private ConnectionWrapper(Connection con) {

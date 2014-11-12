@@ -1,13 +1,13 @@
 package com.epam.nikitasidorevich.banksystem.exception;
 
-public class DAOException extends Exception {
+public class ServiceException extends Exception {
     private Exception exception;
 
-    public DAOException(String errorMessage) {
+    public ServiceException(String errorMessage) {
         super(errorMessage);
     }
 
-    public DAOException(String errorMessage, Exception exception) {
+    public ServiceException(String errorMessage, Exception exception) {
         super(errorMessage);
         this.exception = exception;
     }

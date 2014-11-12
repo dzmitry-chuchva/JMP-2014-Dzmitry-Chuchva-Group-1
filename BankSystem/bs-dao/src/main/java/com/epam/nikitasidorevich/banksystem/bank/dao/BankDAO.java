@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface BankDAO {
 
+    BankTO selectBank(Long bankId) throws DAOException;
+
     List<BankTO> selectBanks() throws DAOException;
 }

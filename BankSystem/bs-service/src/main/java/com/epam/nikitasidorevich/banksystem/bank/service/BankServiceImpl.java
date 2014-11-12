@@ -4,20 +4,31 @@ import com.epam.nikitasidorevich.banksystem.bank.dao.BankDAO;
 import com.epam.nikitasidorevich.banksystem.bank.dao.BankDAOImpl;
 import com.epam.nikitasidorevich.banksystem.bank.entity.BankTO;
 import com.epam.nikitasidorevich.banksystem.exception.DAOException;
+import com.epam.nikitasidorevich.banksystem.exception.ServiceException;
 
 import java.util.List;
 
 public class BankServiceImpl implements BankSerivce {
 
     @Override
-    public List<BankTO> fetchBanks() {
+    public BankTO fetchBank(Long bankId) throws ServiceException {
         BankDAO bankDAO = new BankDAOImpl();
-        List<BankTO> bankTOs = null;
         try {
-            bankTOs = bankDAO.selectBanks();
+            BankTO bankTO = bankDAO.selectBank(bankId);
+            return bankTO;
         } catch (DAOException e) {
-            e.printStackTrace();
+            throw new ServiceException("Service exception", e);
         }
-        return bankTOs;
+    }
+
+    @Override
+    public List<BankTO> fetchBanks() throws ServiceException {
+        BankDAO bankDAO = new BankDAOImpl();
+        try {
+            List<BankTO> bankTOs = bankDAO.selectBanks();
+            return bankTOs;
+        } catch (DAOException e) {
+            throw new ServiceException("Service exception", e);
+        }
     }
 }

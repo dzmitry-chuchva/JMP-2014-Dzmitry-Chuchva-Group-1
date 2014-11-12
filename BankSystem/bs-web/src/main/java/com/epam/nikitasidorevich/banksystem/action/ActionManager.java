@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class ActionManager {
     public static final String PARAM_NAME_ACTION = "action";
     public static final String ACTION_VIEW_BANKS = "viewBanks";
+    public static final String ACTION_VIEW_CLIENTS = "viewClients";
 
     private static ActionManager instance = null;
 
@@ -13,6 +14,7 @@ public class ActionManager {
 
     private ActionManager() {
         actions.put(ACTION_VIEW_BANKS, new ViewBanksAction());
+        actions.put(ACTION_VIEW_CLIENTS, new ViewClientsAction());
     }
 
     public static synchronized ActionManager getInstance() {

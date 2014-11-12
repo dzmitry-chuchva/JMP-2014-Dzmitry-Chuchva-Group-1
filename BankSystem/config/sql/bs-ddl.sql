@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS banks;
 DROP TABLE IF EXISTS persons;
 DROP TABLE IF EXISTS currencies;
+DROP TABLE IF EXISTS accounts;
 
 CREATE TABLE banks (
   bank_id BIGSERIAL NOT NULL,
@@ -23,4 +24,14 @@ CREATE TABLE currencies (
   full_name VARCHAR(64) NOT NULL,
   deleted SMALLINT NOT NULL DEFAULT 0,
   CONSTRAINT pk_currency_id PRIMARY KEY (currency_id)
+);
+
+CREATE TABLE accounts (
+  account_id BIGSERIAL NOT NULL,
+  bank_id BIGSERIAL NOT NULL,
+  person_id BIGSERIAL NOT NULL,
+  currency_id BIGSERIAL NOT NULL,
+  total_cash NUMERIC(10,2),
+  deleted SMALLINT NOT NULL DEFAULT 0,
+  CONSTRAINT pk_account_id PRIMARY KEY (account_id)
 );

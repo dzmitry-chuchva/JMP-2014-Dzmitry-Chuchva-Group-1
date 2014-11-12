@@ -5,6 +5,7 @@ import com.epam.nikitasidorevich.banksystem.connectionpool.ConnectionPool;
 import com.epam.nikitasidorevich.banksystem.connectionpool.exception.ConnectionPoolException;
 import com.epam.nikitasidorevich.banksystem.exception.DAOException;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,9 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankDAOImpl implements BankDAO {
+    public static final String SQL_SELECT_BANK_BY_ID = "SELECT b.bank_id, b.name FROM banks b WHERE b.bank_id = ? AND b.deleted = 0";
     public static final String SQL_SELECT_BANKS = "SELECT b.bank_id, b.name FROM banks b WHERE b.deleted = 0";
 
-    private BankTO buildbuilBankFromResultSet(ResultSet resultSet) throws SQLException {
+    private BankTO buildBankFromResultSet(ResultSet resultSet) throws SQLException {
         BankTO bankTO = new BankTO();
         bankTO.setId(resultSet.getLong("bank_id"));
         bankTO.setName(resultSet.getString("name"));
@@ -22,40 +24,37 @@ public class BankDAOImpl implements BankDAO {
     }
 
     @Override
-    public List<BankTO> selectBanks() throws DAOException {
-        List<BankTO> bankTOs = new ArrayList<BankTO>();
+    public BankTO selectBank(Long bankId) throws DAOException {
+        BankTO bankTO = null;
+        try (
+            ConnectionPool.ConnectionWrapper connection = ConnectionPool.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BANK_BY_ID);
+        ) {
+            preparedStatement.setLong(1, bankId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                bankTO = buildBankFromResultSet(resultSet);
+            }
+            return bankTO;
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DAOException("DAO exception", e);
+        }
+    }
 
-        ConnectionPool.ConnectionWrapper conn = null;
-        Statement statement = null;
-        ResultSet rs = null;
-        try {
-            conn = ConnectionPool.getInstance().getConnection();
-            statement = conn.createStatement();
-            rs = statement.executeQuery(SQL_SELECT_BANKS);
-            while (rs.next()) {
-                bankTOs.add(buildbuilBankFromResultSet(rs));
+    @Override
+    public List<BankTO> selectBanks() throws DAOException {
+        List<BankTO> bankTOs = new ArrayList<>();
+        try (
+            ConnectionPool.ConnectionWrapper connection = ConnectionPool.getInstance().getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_BANKS);
+        ) {
+            while (resultSet.next()) {
+                bankTOs.add(buildBankFromResultSet(resultSet));
             }
             return bankTOs;
-        } catch (ConnectionPoolException ex) {
-            throw new DAOException("Connection error", ex);
-        } catch (SQLException ex) {
-            throw new DAOException("Statement error", ex);
-        } finally {
-            try {
-                if (conn != null) {
-                    ConnectionPool.getInstance().releaseConnection(conn);
-                }
-                if (rs != null) {
-                    rs.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (ConnectionPoolException e) {
-                throw new DAOException("Connection error", e);
-            } catch (SQLException e) {
-                throw new DAOException("Resources error", e);
-            }
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DAOException("DAO exception", e);
         }
     }
 }

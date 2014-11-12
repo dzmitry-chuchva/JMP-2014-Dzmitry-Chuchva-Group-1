@@ -69,5 +69,11 @@ public class Main {
                 System.out.println("Wrong input.");
                 System.exit(0);
         }
+        Vector<Integer> v = new Vector<Integer>();
+        v.add(1);
+        Iterator<Integer> it = v.iterator();
+        v.add(2);
+        while(it.hasNext())
+            System.out.println(it.next());
     }
 }

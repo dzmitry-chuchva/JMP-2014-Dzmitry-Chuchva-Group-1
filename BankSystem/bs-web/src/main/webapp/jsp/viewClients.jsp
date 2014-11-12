@@ -7,7 +7,7 @@
 <body>
 <h1>${bank.name} clients:</h1>
 <c:forEach items="${persons}" var="person">
-  <p><a href="BankSystem?action=viewAccounts&bankId=${bank.id}&cleintId=${person.id}">${person.firstName} ${person.lastName}</a></p>
+  <a href="BankSystem?action=manageAccounts&bankId=${bank.id}&clientId=${person.id}">${person.firstName} ${person.lastName}</a><br/>
 </c:forEach>
 </body>
 </html>

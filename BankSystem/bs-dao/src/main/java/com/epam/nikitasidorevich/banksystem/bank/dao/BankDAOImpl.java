@@ -16,7 +16,7 @@ public class BankDAOImpl implements BankDAO {
     public static final String SQL_SELECT_BANK_BY_ID = "SELECT b.bank_id, b.name FROM banks b WHERE b.bank_id = ? AND b.deleted = 0";
     public static final String SQL_SELECT_BANKS = "SELECT b.bank_id, b.name FROM banks b WHERE b.deleted = 0";
 
-    private BankTO buildBankFromResultSet(ResultSet resultSet) throws SQLException {
+    private BankTO buildBank(ResultSet resultSet) throws SQLException {
         BankTO bankTO = new BankTO();
         bankTO.setId(resultSet.getLong("bank_id"));
         bankTO.setName(resultSet.getString("name"));
@@ -33,10 +33,11 @@ public class BankDAOImpl implements BankDAO {
             preparedStatement.setLong(1, bankId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                bankTO = buildBankFromResultSet(resultSet);
+                bankTO = buildBank(resultSet);
             }
             return bankTO;
         } catch (SQLException | ConnectionPoolException e) {
+            e.printStackTrace();
             throw new DAOException("DAO exception", e);
         }
     }
@@ -50,10 +51,11 @@ public class BankDAOImpl implements BankDAO {
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_BANKS);
         ) {
             while (resultSet.next()) {
-                bankTOs.add(buildBankFromResultSet(resultSet));
+                bankTOs.add(buildBank(resultSet));
             }
             return bankTOs;
         } catch (SQLException | ConnectionPoolException e) {
+            e.printStackTrace();
             throw new DAOException("DAO exception", e);
         }
     }

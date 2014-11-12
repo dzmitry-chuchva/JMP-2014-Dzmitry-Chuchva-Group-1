@@ -15,7 +15,7 @@ public class PersonDAOImpl implements PersonDAO {
     public static final String SQL_SELECT_PERSONS_BY_BANK_ID =
             "SELECT p.person_id, p.first_name, p.last_name FROM persons p JOIN accounts a ON a.person_id = p.person_id WHERE p.deleted = 0 AND a.deleted = 0 AND a.bank_id = ?";
 
-    private PersonTO buildPersonFromResultSet(ResultSet resultSet) throws SQLException {
+    private PersonTO buildPerson(ResultSet resultSet) throws SQLException {
         PersonTO personTO = new PersonTO();
         personTO.setId(resultSet.getLong("person_id"));
         personTO.setFirstName(resultSet.getString("first_name"));
@@ -33,7 +33,7 @@ public class PersonDAOImpl implements PersonDAO {
             preparedStatement.setLong(1, bankId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                personTOs.add(buildPersonFromResultSet(resultSet));
+                personTOs.add(buildPerson(resultSet));
             }
             return personTOs;
         } catch (SQLException | ConnectionPoolException e) {

@@ -1,7 +1,7 @@
 package com.epam.nikitasidorevich.banksystem.controller;
 
-import com.epam.nikitasidorevich.banksystem.action.Action;
-import com.epam.nikitasidorevich.banksystem.action.ActionManager;
+import com.epam.nikitasidorevich.banksystem.controller.action.Action;
+import com.epam.nikitasidorevich.banksystem.controller.action.ActionManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

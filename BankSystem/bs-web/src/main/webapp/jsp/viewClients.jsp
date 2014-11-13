@@ -9,5 +9,8 @@
 <c:forEach items="${persons}" var="person">
   <a href="BankSystem?action=manageAccounts&bankId=${bank.id}&clientId=${person.id}">${person.firstName} ${person.lastName}</a><br/>
 </c:forEach>
+<br/>
+<br/>
+<small><a href="BankSystem?action=viewBanks">Back to banks</a></small>
 </body>
 </html>

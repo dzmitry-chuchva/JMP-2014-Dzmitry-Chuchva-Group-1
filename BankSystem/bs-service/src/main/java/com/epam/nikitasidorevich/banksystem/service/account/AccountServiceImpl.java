@@ -47,15 +47,20 @@ public class AccountServiceImpl implements AccountService {
 
     }
 
-    private Double calculateExchangedTotal(Double totalCash, Double exchangeRate) {
-        Double newTotal = totalCash * exchangeRate;
-        return newTotal;
-    }
+
+//    private Double calculateExchangedTotal(Double totalCash, Double exchangeRate) {
+//        Double newTotal = totalCash * exchangeRate;
+//        return newTotal;
+//    }
 
     @Override
     public void exchangeAccountCurrency(Long bankId, Long accountId, Long personId, Long currencyId, Double totalCash, Double exchangeRate) throws ServiceException {
         AccountDAO accountDAO = AccountDAOImpl.getInstance();
-        Double newTotal = calculateExchangedTotal(totalCash, exchangeRate);
+//        Double newTotal = calculateExchangedTotal(totalCash, exchangeRate);
+
+        CurrencyExchanger currencyExchanger = new CurrencyExchanger();
+        Double newTotal = currencyExchanger.calculateExchangedTotal(totalCash, exchangeRate);
+
         try {
             accountDAO.updateAccount(bankId, accountId, personId, currencyId, newTotal);
         } catch (DAOException e) {

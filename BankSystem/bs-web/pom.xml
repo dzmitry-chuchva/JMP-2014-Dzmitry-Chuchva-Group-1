@@ -17,12 +17,11 @@
         <dependency>
             <groupId>com.epam.nikitasidorevich</groupId>
             <artifactId>bs-domain</artifactId>
-            <version>${bs-domain.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.epam.nikitasidorevich</groupId>
             <artifactId>bs-service</artifactId>
-            <version>${bs-dao.version}</version>
         </dependency>
 
         <dependency>

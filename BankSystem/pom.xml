@@ -25,21 +25,46 @@
 
         <spring.version>4.1.1.RELEASE</spring.version>
         <postgresql.version>9.3-1102-jdbc4</postgresql.version>
+
+        <!--<junit.verson>4.12</junit.verson>-->
+        <mockito.verson>1.10.0</mockito.verson>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- App modules -->
+            <dependency>
+                <groupId>com.epam.nikitasidorevich</groupId>
+                <artifactId>bs-domain</artifactId>
+                <version>${bs-domain.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.nikitasidorevich</groupId>
+                <artifactId>bs-dao</artifactId>
+                <version>${bs-dao.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.nikitasidorevich</groupId>
+                <artifactId>bs-service</artifactId>
+                <version>${bs-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.nikitasidorevich</groupId>
+                <artifactId>bs-web</artifactId>
+                <version>${bs-web.version}</version>
+            </dependency>
+
             <!-- Spring JDBC -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.springframework</groupId>-->
+                <!--<artifactId>spring-jdbc</artifactId>-->
+                <!--<version>${spring.version}</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>org.springframework</groupId>-->
+                <!--<artifactId>spring-tx</artifactId>-->
+                <!--<version>${spring.version}</version>-->
+            <!--</dependency>-->
 
             <!-- PostgreSQL driver -->
             <dependency>
@@ -47,6 +72,21 @@
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <!-- Dependency for JUnit -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- Dependency for Mockito -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>1.10.0</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

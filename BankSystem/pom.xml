@@ -26,8 +26,10 @@
         <spring.version>4.1.1.RELEASE</spring.version>
         <postgresql.version>9.3-1102-jdbc4</postgresql.version>
 
-        <!--<junit.verson>4.12</junit.verson>-->
+        <junit.verson>4.11</junit.verson>
         <mockito.verson>1.10.0</mockito.verson>
+        <dbunit.verson>2.5.0</dbunit.verson>
+        <slf4j.verson>1.7.7</slf4j.verson>
     </properties>
 
     <dependencyManagement>
@@ -54,18 +56,6 @@
                 <version>${bs-web.version}</version>
             </dependency>
 
-            <!-- Spring JDBC -->
-            <!--<dependency>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-jdbc</artifactId>-->
-                <!--<version>${spring.version}</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.springframework</groupId>-->
-                <!--<artifactId>spring-tx</artifactId>-->
-                <!--<version>${spring.version}</version>-->
-            <!--</dependency>-->
-
             <!-- PostgreSQL driver -->
             <dependency>
                 <groupId>org.postgresql</groupId>
@@ -74,20 +64,55 @@
                 <scope>provided</scope>
             </dependency>
 
-            <!-- Dependency for JUnit -->
+            <!-- jUnit -->
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version>4.12</version>
+                <version>${junit.verson}</version>
                 <scope>test</scope>
             </dependency>
-            <!-- Dependency for Mockito -->
+            <!-- mockito -->
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>1.10.0</version>
+                <version>${mockito.verson}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- dbUnit -->
+            <dependency>
+                <groupId>org.dbunit</groupId>
+                <artifactId>dbunit</artifactId>
+                <version>${dbunit.verson}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- slf4j -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.verson}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.verson}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

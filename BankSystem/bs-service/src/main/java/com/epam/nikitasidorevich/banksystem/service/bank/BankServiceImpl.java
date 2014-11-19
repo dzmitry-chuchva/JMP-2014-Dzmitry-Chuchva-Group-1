@@ -10,9 +10,10 @@ import java.util.List;
 
 public class BankServiceImpl implements BankSerivce {
 
+    private BankDAO bankDAO = BankDAOImpl.getInstance();
+
     @Override
     public BankTO fetchBank(Long bankId) throws ServiceException {
-        BankDAO bankDAO = BankDAOImpl.getInstance();
         try {
             BankTO bankTO = bankDAO.selectBank(bankId);
             return bankTO;
@@ -23,7 +24,6 @@ public class BankServiceImpl implements BankSerivce {
 
     @Override
     public List<BankTO> fetchBanks() throws ServiceException {
-        BankDAO bankDAO = BankDAOImpl.getInstance();
         try {
             List<BankTO> bankTOs = bankDAO.selectBanks();
             return bankTOs;

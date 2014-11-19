@@ -44,22 +44,28 @@ public class AccountServiceImpl implements AccountService {
         } catch (DAOException e) {
             throw new ServiceException("Service error", e);
         }
-
     }
 
-
-//    private Double calculateExchangedTotal(Double totalCash, Double exchangeRate) {
-//        Double newTotal = totalCash * exchangeRate;
-//        return newTotal;
-//    }
+    //access modifier changed to public
+    //so now this method can be covered with tests
+    public Double calculateExchangedTotal(Double totalCash, Double exchangeRate) throws ServiceException {
+        if (totalCash < 0 || exchangeRate < 0 || exchangeRate > 1) {
+            throw new ServiceException("Incorrect arguments passed!");
+        } else {
+            Double newTotal = totalCash * exchangeRate;
+            return newTotal;
+        }
+    }
 
     @Override
     public void exchangeAccountCurrency(Long bankId, Long accountId, Long personId, Long currencyId, Double totalCash, Double exchangeRate) throws ServiceException {
         AccountDAO accountDAO = AccountDAOImpl.getInstance();
 //        Double newTotal = calculateExchangedTotal(totalCash, exchangeRate);
 
-        CurrencyExchanger currencyExchanger = new CurrencyExchanger();
-        Double newTotal = currencyExchanger.calculateExchangedTotal(totalCash, exchangeRate);
+//        CurrencyExchanger currencyExchanger = new CurrencyExchanger();
+//        Double newTotal = currencyExchanger.calculateExchangedTotal(totalCash, exchangeRate);
+
+        Double newTotal = calculateExchangedTotal(totalCash, exchangeRate);
 
         try {
             accountDAO.updateAccount(bankId, accountId, personId, currencyId, newTotal);

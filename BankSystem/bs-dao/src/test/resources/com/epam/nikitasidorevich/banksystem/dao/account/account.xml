@@ -1,0 +1,5 @@
+<dataset>
+    <accounts account_id="1" bank_id="1" person_id="1" currency_id="1" total_cash="6000" deleted="0"/>
+    <accounts account_id="2" bank_id="1" person_id="2" currency_id="2" total_cash="12000" deleted="0"/>
+    <accounts account_id="3" bank_id="1" person_id="3" currency_id="3" total_cash="1600" deleted="0"/>
+</dataset>

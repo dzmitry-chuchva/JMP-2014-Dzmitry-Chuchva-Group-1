@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface AccountService {
 
+    public Double calculateExchangedTotal(Double totalCash, Double exchangeRate) throws ServiceException;
+
     List<AccountVO> fetchAccounts(Long bankId, Long personId) throws ServiceException;
 
     void exchangeAccountCurrency(Long bankId, Long accountId, Long personId, Long currencyId, Double totalCash, Double exchangeRate) throws ServiceException;

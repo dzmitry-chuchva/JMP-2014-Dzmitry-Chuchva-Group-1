@@ -1,7 +1,17 @@
 package com.epam.nikitasidorevich.banksystem.entity.bank;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "banks", schema = "public")
 public class BankTO {
+    @Id
+    @Column(name = "bank_id")
     private Long id;
+    @Column(name = "name")
     private String name;
 
     public Long getId() {

@@ -25,6 +25,7 @@
 
         <spring.version>4.1.1.RELEASE</spring.version>
         <postgresql.version>9.3-1102-jdbc4</postgresql.version>
+        <hibernate.version>4.2.7.Final</hibernate.version>
 
         <junit.verson>4.11</junit.verson>
         <mockito.verson>1.10.0</mockito.verson>
@@ -61,8 +62,25 @@
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
-                <scope>provided</scope>
+                <!--<scope>provided</scope>-->
             </dependency>
+
+            <!-- Hibernate Entity Manager -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.hibernate.javax.persistence</groupId>-->
+                <!--<artifactId>hibernate-jpa-2.1-api</artifactId>-->
+                <!--<version>1.0.0.Final</version>-->
+            <!--</dependency>-->
 
             <!-- jUnit -->
             <dependency>
@@ -111,6 +129,40 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <modules>
+                        <warModule>
+                            <groupId>com.epam.nikitasidorevich</groupId>
+                            <artifactId>bs-web-1.0-SNAPSHOT</artifactId>
+                            <uri>bs-web-1.0-SNAPSHOT.war</uri>
+                            <bundleFileName>bs-web-1.0-SNAPSHOT.war</bundleFileName>
+                            <contextRoot>/banksystem</contextRoot>
+                        </warModule>
+                        <jarModule>
+                            <groupId>com.epam.nikitasidorevich</groupId>
+                            <artifactId>bs-domain-1.0-SNAPSHOT</artifactId>
+                            <uri>bs-domain-1.0-SNAPSHOT.jar</uri>
+                            <bundleFileName>bs-domain-1.0-SNAPSHOT.jar</bundleFileName>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>com.epam.nikitasidorevich</groupId>
+                            <artifactId>bs-dao-1.0-SNAPSHOT</artifactId>
+                            <uri>bs-dao-1.0-SNAPSHOT.jar</uri>
+                            <bundleFileName>bs-dao-1.0-SNAPSHOT.jar</bundleFileName>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>com.epam.nikitasidorevich</groupId>
+                            <artifactId>bs-service-1.0-SNAPSHOT</artifactId>
+                            <uri>bs-service-1.0-SNAPSHOT.jar</uri>
+                            <bundleFileName>bs-service-1.0-SNAPSHOT.jar</bundleFileName>
+                        </jarModule>
+                    </modules>
                 </configuration>
             </plugin>
         </plugins>

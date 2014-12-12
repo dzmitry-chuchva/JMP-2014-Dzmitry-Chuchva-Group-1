@@ -25,6 +25,20 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
+        <!-- Hibernate Entity Manager -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate.javax.persistence</groupId>-->
+            <!--<artifactId>hibernate-jpa-2.1-api</artifactId>-->
+        <!--</dependency>-->
+
         <!-- dbUnit -->
         <dependency>
             <groupId>org.dbunit</groupId>

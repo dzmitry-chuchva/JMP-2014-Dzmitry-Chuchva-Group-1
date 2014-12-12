@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://java.sun.com/xml/ns/javaee"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd"
+             version="5">
+
+    <description>Bank System 1.0 EAR</description>
+    <display-name>Bank System 1.0 EAR</display-name>
+
+    <module id="bs-web">
+        <web>
+            <web-uri>bs-web-1.0-SNAPSHOT.war</web-uri>
+            <context-root>/banksystem</context-root>
+        </web>
+    </module>
+
+    <!-- Application Client Modules -->
+    <!--<module>-->
+        <!--&lt;!&ndash; Application Client using JMS to interact with the application &ndash;&gt;-->
+        <!--<java>jms-application-client.jar</java>-->
+    <!--</module>-->
+    <!--<module>-->
+        <!--&lt;!&ndash; Not secured Application Client (only access read-only beans) &ndash;&gt;-->
+        <!--<java>not-secured-application-client.jar</java>-->
+    <!--</module>-->
+    <!--<module>-->
+        <!--&lt;!&ndash; Secured Application Client (can access all bean under a SecurityContext) &ndash;&gt;-->
+        <!--<java>jaas-secured-application-client.jar</java>-->
+    <!--</module>-->
+
+</application>

@@ -1,8 +1,19 @@
 package com.epam.nikitasidorevich.banksystem.entity.currency;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "currencies", schema = "public")
 public class CurrencyTO {
+    @Id
+    @Column(name = "currency_id")
     private Long id;
+    @Column(name = "code")
     private String code;
+    @Column(name = "full_name")
     private String fullName;
 
     public Long getId() {

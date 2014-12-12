@@ -2,6 +2,7 @@ package com.epam.nikitasidorevich.banksystem.service.account;
 
 import com.epam.nikitasidorevich.banksystem.dao.account.AccountDAO;
 import com.epam.nikitasidorevich.banksystem.dao.account.AccountDAOImpl;
+import com.epam.nikitasidorevich.banksystem.dao.account.JPAAccountDAOImpl;
 import com.epam.nikitasidorevich.banksystem.entity.account.AccountTO;
 import com.epam.nikitasidorevich.banksystem.entity.account.AccountVO;
 import com.epam.nikitasidorevich.banksystem.entity.currency.CurrencyTO;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountServiceImpl implements AccountService {
+    private AccountDAO accountDAO = new JPAAccountDAOImpl();
 
     @Override
     public List<AccountVO> fetchAccounts(Long bankId, Long personId) throws ServiceException {
@@ -24,7 +26,7 @@ public class AccountServiceImpl implements AccountService {
 
         PersonService personService = new PersonServiceImpl();
         CurrencyService currencyService = new CurrencyServiceImpl();
-        AccountDAO accountDAO = AccountDAOImpl.getInstance();
+//        AccountDAO accountDAO = AccountDAOImpl.getInstance();
         try {
             List<AccountTO> accountTOs = accountDAO.selectAccounts(bankId, personId);
             for (AccountTO accountTO : accountTOs) {
@@ -59,7 +61,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void exchangeAccountCurrency(Long bankId, Long accountId, Long personId, Long currencyId, Double totalCash, Double exchangeRate) throws ServiceException {
-        AccountDAO accountDAO = AccountDAOImpl.getInstance();
+//        AccountDAO accountDAO = AccountDAOImpl.getInstance();
 //        Double newTotal = calculateExchangedTotal(totalCash, exchangeRate);
 
 //        CurrencyExchanger currencyExchanger = new CurrencyExchanger();

@@ -1,10 +1,23 @@
 package com.epam.nikitasidorevich.banksystem.entity.account;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "accounts", schema = "public")
 public class AccountTO {
+    @Id
+    @Column(name = "account_id")
     private Long id;
+    @Column(name = "bank_id")
     private Long bankId;
+    @Column(name = "person_id")
     private Long personId;
+    @Column(name = "currency_id")
     private Long currencyId;
+    @Column(name = "total_cash")
     private Double totalCash;
 
     public Long getId() {

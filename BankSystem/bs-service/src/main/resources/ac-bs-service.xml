@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <import resource="classpath:ac-bs-dao.xml"/>
+
+       <bean id="bankService" class="com.epam.nikitasidorevich.banksystem.service.bank.BankServiceImpl">
+              <property name="bankDAO" ref="bankDAO"/>
+       </bean>
+
+       <bean id="accountService" class="com.epam.nikitasidorevich.banksystem.service.account.AccountServiceImpl">
+              <property name="accountDAO" ref="accountDAO"/>
+              <property name="personService" ref="personService"/>
+              <property name="currencyService" ref="currencyService"/>
+       </bean>
+
+       <bean id="currencyService" class="com.epam.nikitasidorevich.banksystem.service.currency.CurrencyServiceImpl">
+              <property name="currencyDAO" ref="currencyDAO"/>
+       </bean>
+
+       <bean id="personService" class="com.epam.nikitasidorevich.banksystem.service.person.PersonServiceImpl">
+              <property name="personDAO" ref="personDAO"/>
+       </bean>
+</beans>

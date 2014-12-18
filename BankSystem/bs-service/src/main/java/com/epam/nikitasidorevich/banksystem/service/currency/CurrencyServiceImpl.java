@@ -10,7 +10,11 @@ import com.epam.nikitasidorevich.banksystem.service.exception.ServiceException;
 import java.util.List;
 
 public class CurrencyServiceImpl implements CurrencyService {
-    private CurrencyDAO currencyDAO = new JPACurrencyDAOImpl();
+    private CurrencyDAO currencyDAO;
+
+    public void setCurrencyDAO(CurrencyDAO currencyDAO) {
+        this.currencyDAO = currencyDAO;
+    }
 
     @Override
     public CurrencyTO fetchCurrency(Long currencyId) throws ServiceException {

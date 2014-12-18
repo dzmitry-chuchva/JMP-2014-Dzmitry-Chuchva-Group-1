@@ -4,15 +4,28 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
     <servlet>
-        <servlet-name>BankSystem</servlet-name>
-        <servlet-class>com.epam.nikitasidorevich.banksystem.controller.BanksystemController</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <servlet-name>banksystemController</servlet-name>
+        <servlet-class>
+            org.springframework.web.context.support.HttpRequestHandlerServlet
+        </servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>BankSystem</servlet-name>
+        <servlet-name>banksystemController</servlet-name>
         <url-pattern>/BankSystem</url-pattern>
     </servlet-mapping>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/ac-bs-web.xml
+        </param-value>
+    </context-param>
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
 
     <session-config>
         <session-timeout>

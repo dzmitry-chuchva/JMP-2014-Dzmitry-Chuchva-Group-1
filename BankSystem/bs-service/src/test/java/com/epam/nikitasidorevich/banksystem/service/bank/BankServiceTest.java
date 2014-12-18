@@ -21,7 +21,7 @@ public class BankServiceTest {
     private BankDAO bankDAO;
 
     @InjectMocks
-    private BankSerivce bankSerivce = new BankServiceImpl();
+    private BankService bankService = new BankServiceImpl();
 
     private BankTO createBank(Long id, String name) {
         BankTO bankTO = new BankTO();
@@ -40,14 +40,14 @@ public class BankServiceTest {
     @Test
     public void testFetchBank() throws Exception {
         when(bankDAO.selectBank(anyLong())).thenReturn(createBank(1L, "TestBank1"));
-        BankTO bankTO = bankSerivce.fetchBank(555L);
+        BankTO bankTO = bankService.fetchBank(555L);
         assertNotNull(bankTO);
     }
 
     @Test
     public void testFetchBanks() throws Exception {
         when(bankDAO.selectBanks()).thenReturn(createBanks());
-        List<BankTO> bankTOs = bankSerivce.fetchBanks();
+        List<BankTO> bankTOs = bankService.fetchBanks();
         for (BankTO bankTO : bankTOs) {
             assertNotNull(bankTO);
         }

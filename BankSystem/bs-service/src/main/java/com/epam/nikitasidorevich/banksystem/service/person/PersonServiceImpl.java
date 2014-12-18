@@ -10,7 +10,11 @@ import com.epam.nikitasidorevich.banksystem.entity.person.PersonTO;
 import java.util.List;
 
 public class PersonServiceImpl implements PersonService {
-    private PersonDAO personDAO = new JPAPersonDAOImpl();
+    private PersonDAO personDAO;
+
+    public void setPersonDAO(PersonDAO personDAO) {
+        this.personDAO = personDAO;
+    }
 
     @Override
     public PersonTO fetchPerson(Long personId) throws ServiceException {

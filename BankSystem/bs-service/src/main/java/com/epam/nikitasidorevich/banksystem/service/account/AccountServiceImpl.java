@@ -18,15 +18,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountServiceImpl implements AccountService {
-    private AccountDAO accountDAO = new JPAAccountDAOImpl();
+    private AccountDAO accountDAO;
+    private PersonService personService;
+    private CurrencyService currencyService;
+
+    public void setAccountDAO(AccountDAO accountDAO) {
+        this.accountDAO = accountDAO;
+    }
+
+    public void setPersonService(PersonService personService) {
+        this.personService = personService;
+    }
+
+    public void setCurrencyService(CurrencyService currencyService) {
+        this.currencyService = currencyService;
+    }
 
     @Override
     public List<AccountVO> fetchAccounts(Long bankId, Long personId) throws ServiceException {
         List<AccountVO> accountVOs = new ArrayList<>();
 
-        PersonService personService = new PersonServiceImpl();
-        CurrencyService currencyService = new CurrencyServiceImpl();
-//        AccountDAO accountDAO = AccountDAOImpl.getInstance();
         try {
             List<AccountTO> accountTOs = accountDAO.selectAccounts(bankId, personId);
             for (AccountTO accountTO : accountTOs) {
@@ -61,12 +72,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void exchangeAccountCurrency(Long bankId, Long accountId, Long personId, Long currencyId, Double totalCash, Double exchangeRate) throws ServiceException {
-//        AccountDAO accountDAO = AccountDAOImpl.getInstance();
-//        Double newTotal = calculateExchangedTotal(totalCash, exchangeRate);
-
-//        CurrencyExchanger currencyExchanger = new CurrencyExchanger();
-//        Double newTotal = currencyExchanger.calculateExchangedTotal(totalCash, exchangeRate);
-
         Double newTotal = calculateExchangedTotal(totalCash, exchangeRate);
 
         try {

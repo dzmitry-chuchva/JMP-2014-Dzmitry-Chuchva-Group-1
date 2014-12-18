@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="bankDAO" class="com.epam.nikitasidorevich.banksystem.dao.bank.JPABankDAOImpl"/>
+
+       <bean id="accountDAO" class="com.epam.nikitasidorevich.banksystem.dao.account.JPAAccountDAOImpl"/>
+
+       <bean id="currencyDAO" class="com.epam.nikitasidorevich.banksystem.dao.currency.JPACurrencyDAOImpl"/>
+
+       <bean id="personDAO" class="com.epam.nikitasidorevich.banksystem.dao.person.JPAPersonDAOImpl"/>
+
+</beans>

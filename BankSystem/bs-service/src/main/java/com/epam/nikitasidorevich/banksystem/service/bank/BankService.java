@@ -5,7 +5,7 @@ import com.epam.nikitasidorevich.banksystem.service.exception.ServiceException;
 
 import java.util.List;
 
-public interface BankSerivce {
+public interface BankService {
 
     BankTO fetchBank(Long bankId) throws ServiceException;
 

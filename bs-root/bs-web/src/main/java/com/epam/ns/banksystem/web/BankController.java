@@ -15,7 +15,8 @@ public class BankController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home() {
-        System.out.println(bankService.fetchBank(1L));
+//        System.out.println(bankService.fetchBank(1L));
+        bankService.fetchBanks();
         return "home";
     }
 }

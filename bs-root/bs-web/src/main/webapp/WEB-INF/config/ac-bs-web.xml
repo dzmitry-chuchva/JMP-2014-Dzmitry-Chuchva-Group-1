@@ -9,6 +9,8 @@
            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
+       <import resource="classpath:ac-bs-service.xml"/>
+
        <context:component-scan base-package="com.epam.ns.banksystem"/>
 
        <mvc:annotation-driven/>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+    </head>
+
+    <body>
+        <h1>Available banks:</h1>
+
+        <table>
+            <tr th:each="bank : ${banks}">
+                <td><a th:href="@{/bank/{id}/clients(id=${bank.id})}" th:text="${bank.name}" /></td>
+            </tr>
+        </table>
+    </body>
+</html>

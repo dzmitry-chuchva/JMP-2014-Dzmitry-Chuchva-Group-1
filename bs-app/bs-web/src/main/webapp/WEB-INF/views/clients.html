@@ -5,11 +5,11 @@
     </head>
 
     <body>
-        <h1>Available clients:</h1>
+        <h1 th:text="${bankVO.bankTO.name + ' clients:'}" />
 
         <table>
-            <tr th:each="bank : ${banks}">
-                <td><a th:href="@{/bank/{id}/clients(id=${bank.id})}" th:text="${bank.name}" /></td>
+            <tr th:each="person : ${bankVO.personTOs}">
+                <td><a th:href="@{/bank/{bankId}/client/{clientId}/accounts(bankId=${bankVO.bankTO.id},clientId=${person.id})}" th:text="${person.firstName + ' ' + person.lastName}" /></td>
             </tr>
         </table>
         <a th:href="@{/banks}" >Back to banks</a>

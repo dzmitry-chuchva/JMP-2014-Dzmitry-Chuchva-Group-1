@@ -13,8 +13,10 @@ import java.util.List;
 
 @Repository(value = "bankDAO")
 public class BankDAOSpringJDBCImpl implements BankDAO {
-    public static final String SQL_SELECT_BANK_BY_ID = "SELECT b.bank_id, b.name FROM banks b WHERE b.bank_id = ? AND b.deleted = 0";
-    public static final String SQL_SELECT_BANKS = "SELECT b.bank_id, b.name FROM banks b WHERE b.deleted = 0";
+    public static final String SQL_SELECT_BANK_BY_ID =
+        "SELECT b.bank_id, b.name FROM banks b WHERE b.bank_id = ? AND b.deleted = 0";
+    public static final String SQL_SELECT_BANKS =
+        "SELECT b.bank_id, b.name FROM banks b WHERE b.deleted = 0";
 
     private JdbcTemplate jdbcTemplate;
 

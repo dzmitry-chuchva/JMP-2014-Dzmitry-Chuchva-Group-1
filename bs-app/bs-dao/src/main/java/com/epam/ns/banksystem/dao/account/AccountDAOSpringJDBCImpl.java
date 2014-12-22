@@ -18,9 +18,9 @@ public class AccountDAOSpringJDBCImpl implements AccountDAO {
         "SELECT a.account_id, a.bank_id, a.person_id, a.currency_id, a.total_cash FROM accounts a " +
         "WHERE a.deleted = 0 AND a.bank_id = ? AND a.person_id = ?";
     private static final String SQL_UPDATE_ACCOUNTS_TOTAL_CASH =
-        "UPDATE accounts a " +
-        "SET a.currency_id = ?, a.total_cash = ? " +
-        "WHERE a.deleted = 0 AND a.bank_id = ? AND a.account_id = ? AND a.person_id = ?";
+        "UPDATE accounts " +
+        "SET currency_id = ?, total_cash = ? " +
+        "WHERE deleted = 0 AND bank_id = ? AND account_id = ? AND person_id = ?";
 
     private JdbcTemplate jdbcTemplate;
 

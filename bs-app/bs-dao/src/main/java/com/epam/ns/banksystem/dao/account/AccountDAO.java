@@ -8,5 +8,5 @@ public interface AccountDAO {
 
     List<AccountTO> selectAccounts(Long bankId, Long personId);
 
-    void updateAccount(AccountTO accountTO);
+    void batchUpdateAccounts(List<AccountTO> accountTOs);
 }

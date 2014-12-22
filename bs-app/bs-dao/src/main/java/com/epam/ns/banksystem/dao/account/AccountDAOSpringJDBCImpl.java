@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository(value = "accountDAO")
@@ -35,8 +36,19 @@ public class AccountDAOSpringJDBCImpl implements AccountDAO {
     }
 
     @Override
-    public void updateAccount(AccountTO accountTO) {
-
+    public void batchUpdateAccounts(List<AccountTO> accountTOs) {
+        List<Object[]> batch = new ArrayList<Object[]>();
+        for (AccountTO accountTO : accountTOs) {
+            Object[] values = new Object[] {
+                accountTO.getCurrencyId(),
+                accountTO.getTotalCash(),
+                accountTO.getBankId(),
+                accountTO.getId(),
+                accountTO.getPersonId()
+            };
+            batch.add(values);
+        }
+        jdbcTemplate.batchUpdate(SQL_UPDATE_ACCOUNTS_TOTAL_CASH, batch);
     }
 
     private static final class AccountMapper implements RowMapper<AccountTO> {

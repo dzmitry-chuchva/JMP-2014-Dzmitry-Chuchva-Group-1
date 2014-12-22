@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+    </head>
+
+    <body>
+
+        <h2 th:text="${accountVO.bankTO.name + ': ' + accountVO.personTO.firstName + ' ' + accountVO.personTO.lastName} + '\'s accounts:'" />
+
+        <form action="#" th:action="@{/updateAccount}" th:object="${accountVO}" method="POST">
+            <div th:each="account, accStat : *{accountTOs}">
+                <input type="text" th:field="*{accountTOs[__${accStat.index}__].totalCash}" />
+
+                <!--<b th:text="*{accountTOs[__${accStat.index}__].totalCash}" />-->
+
+                <select th:field="*{accountTOs[__${accStat.index}__].currencyId}">
+                    <option th:each="currency, stat : *{currencyTOs}"
+                            th:value="*{currencyTOs[__${stat.index}__].id}"
+                            th:text="*{currencyTOs[__${stat.index}__].code}"
+                            th:selected="*{currencyTOs[__${stat.index}__].id eq accountTOs[__${accStat.index}__].currencyId}" />
+                </select>
+            </div>
+
+            <input type="submit" value="Update" />
+        </form>
+
+        <a th:href="@{/bank/{bankId}/clients(bankId=${accountVO.bankTO.id})}" >Back to clients</a>
+
+    </body>
+</html>

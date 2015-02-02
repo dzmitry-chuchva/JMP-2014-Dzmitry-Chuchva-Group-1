@@ -21,6 +21,10 @@ public class AccountDAOSpringJDBCImpl implements AccountDAO {
         "UPDATE accounts " +
         "SET currency_id = ?, total_cash = ? " +
         "WHERE deleted = 0 AND bank_id = ? AND account_id = ? AND person_id = ?";
+    private static final String SQL_UPDATE_ACCOUNT_TOTAL_CASH =
+        "UPDATE accounts " +
+        "SET currency_id = ?, total_cash = ? " +
+        "WHERE deleted = 0 AND bank_id = ? AND person_id = ?";
 
     private JdbcTemplate jdbcTemplate;
 
@@ -49,6 +53,11 @@ public class AccountDAOSpringJDBCImpl implements AccountDAO {
             batch.add(values);
         }
         jdbcTemplate.batchUpdate(SQL_UPDATE_ACCOUNTS_TOTAL_CASH, batch);
+    }
+
+    @Override
+    public void updateAccount(Long bankId, Long personId, Long currencyId, Double newTotal) {
+        jdbcTemplate.update(SQL_UPDATE_ACCOUNT_TOTAL_CASH, currencyId, newTotal, bankId, personId);
     }
 
     private static final class AccountMapper implements RowMapper<AccountTO> {

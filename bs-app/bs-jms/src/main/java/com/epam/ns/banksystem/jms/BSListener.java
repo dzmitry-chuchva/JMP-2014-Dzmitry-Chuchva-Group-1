@@ -24,7 +24,9 @@ public class BSListener implements MessageListener {
                 Long currencyId = Long.parseLong(cmdArgs[3]);
                 Double newTotal = Double.parseDouble(cmdArgs[4]);
 
-                accountDAO.updateAccount(bankId, personId, currencyId, newTotal);
+                System.out.println("I'M HERE!!!");
+
+//                accountDAO.updateAccount(bankId, personId, currencyId, newTotal);
                 break;
             default:
                 System.out.println("WARNING: Unsupported operation");
